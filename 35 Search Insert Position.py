@@ -1,19 +1,55 @@
-nums = [1]
 
-target = 2
+
+             #
+# [1,2,3,4,5,6,7,8,9,15]
+# find 3
+
+# split half index[5] = 6
 
 def searchInsertPosition(arr,target):
-    last = len(arr)
-    if target < arr[0] a last == 1 :
 
-        return 0
-    elif target > arr[0] and last == 1:
-        return 1
-    for i in range(last - 1):
-        if arr[i] == target:
-            return i
-        elif arr[i] < target and arr[i + 1] > target:
-            return i + 1
-    return last
+    arrLength = len(arr)-1
+    low,high = 0, arrLength
+    # mid = (low + (high - low)) // 2
+    # mid = (low + high) // 2
+    while low <= high:
+        # mid = (low + (high - low)) // 2
+        mid = (low + high) // 2
+        print("mid =", mid)
 
-print(searchInsertPosition(nums,target))
+        if target == arr[mid]:
+            return mid
+        # if target > arr[mid]:
+        #     low = mid + 1
+        #     print('low',low,high)
+        # elif target < arr[mid]:
+        #     high = mid - 1
+        #     print('high')
+        if arr[mid] < target:
+            low = mid + 1
+            print("low increment")
+        else:
+            high = mid - 1
+            print("high decrement")
+
+        # if low >= high:
+        #     print('not found', low, high)
+        #     break
+    return low
+def testcase1():
+    nums = [1, 3, 5, 6, 8]
+    target = 0
+    #output = 2
+
+    print(searchInsertPosition(nums,target))
+testcase1()
+
+def testcase2():
+    nums = [1, 3, 5, 6]
+    target = 2
+    # output = 1
+
+    searchInsertPosition(nums, target)
+
+
+#print(searchInsertPosition(nums,target))
